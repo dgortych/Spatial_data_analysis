@@ -1,0 +1,65 @@
+---
+title: "cw2"
+output: html_document
+---
+
+Czesc teoretyczna
+
+1. Hipoteza statystyczna to przypuszczenie jakie podejmujemy dla konkretnego zbioru danych.
+Hipoteza H0 to to hipoteza pierwotna jak staramy sie dowie
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Zad1
+```{r}
+x <- seq(from = -2, to = 2, by = 0.01)
+
+d <- density(x,bw=10)
+plot(d, ylab="Rozklad prawdopodobienstwa")
+
+
+```
+
+Zad2
+```{r}
+dystrybuanta <- pnorm(x,mean=0,sd=1)
+
+plot(dystrybuanta,type="l")
+
+
+```
+
+Zad3
+```{r}
+
+library(sp)
+
+dane <- readRDS(file="ca_geo.rds")
+
+class(dane)
+
+dane_frame <- data.frame(dane)
+
+```
+Zadanie4
+```{r}
+
+library(base)
+
+
+
+```
+
+
+

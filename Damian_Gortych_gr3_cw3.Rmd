@@ -1,0 +1,107 @@
+---
+title: "cw2"
+output: html_document
+---
+
+Czesc teoretyczna
+
+1. Hipoteza statystyczna to przypuszczenie ktore podejmujemy dla konkretnego zbioru danych.
+Hipoteza H0 to to hipoteza pierwotna ktora staramy sie dowiesc. Hipoteze alternatywna czyli H1
+tworzymy dal przypadku jesli H0 okaze sie nieprawdziwa.
+
+2.Jetst to z gory przyjeta norma dla jakiej przyjmujemy H0. W przypadku jej przekoroczenia przyjmujemy H1.
+
+3.Rozklad normalny to rozklad w ktorym wiekszosc obserwacji skupiona jest wokol sredniej,a oddalajac sie od niej liczba obserwacj spada drastycznie i rownomiernie po obu jego stronach.
+
+4.Dystrybunta jest funkcja ktora zwaraca szanse na zajscie zdarzenia rownego badz mniejszego od podanego jako argument.
+
+
+Czesc praktyczna
+
+Zad1
+```{r}
+x <- seq(from = -2, to = 2, by = 0.01)
+
+d <- dnorm(x)
+plot(x,d, ylab="Rozklad prawdopodobienstwa", type="l")
+
+
+```
+
+Zad2
+```{r}
+dystrybuanta <- pnorm(x,mean=0,sd=1)
+
+plot(x,dystrybuanta,type="l")
+
+
+```
+
+Zad3
+```{r}
+
+library(sp)
+
+dane <- readRDS(file="ca_geo.rds")
+
+class(dane)
+
+dane_frame <- data.frame(dane)
+
+```
+Zadanie4
+```{r}
+
+library(base)
+
+ph <- na.omit(dane_frame$pH)
+range(ph)
+mean(ph)
+median(ph)
+sd(ph)
+IQR(ph)
+
+```
+
+Zadanie5 
+```{r}
+hist(ph)
+
+```
+
+Zadanie6
+```{r}
+plot(density(ph))
+
+```
+Zadanie 7
+
+```{r}
+
+boxplot(ph,range= 1.5)
+
+
+```
+
+Zadanie 8
+```{r}
+sc <- scale(ph)
+
+hist(sc)
+
+
+```
+
+Zadanie 9
+```{r}
+
+ if( shapiro.test(ph)[2] < 0.05 ) 
+   print("Odrzucamy")
+ 
+```
+
+
+
+
+
+

@@ -1,0 +1,80 @@
+---
+title: "cw5"
+output: html_document
+---
+
+PPP() - utworzenie procesu punktowego 
+npoints()
+coords()
+marks()
+as.window()
+as.data.frame()
+E = lambda * area(B)
+quadrat.test()  - test sprawdzajacy czy rozklad jest losowy na podstawie parametru p
+
+
+1,2,3
+```{r}
+
+library(stats)
+library(spatstat)
+
+points_x <- runif(200,0,1)
+points_y <- runif(200,0,2)
+
+points <- data.frame(points_x,points_y)
+
+plot(points)
+
+plot(points,asp=0.5)  ##check
+
+```
+
+4,5
+```{r}
+
+R <- 100
+PI <- 3.14159265359
+r_squared <- R *sqrt(runif(300,0,1))
+angle <- runif(300,0,1) * 2 * PI
+
+spoints_x <- sqrt(r_squared) * cos(angle)
+spoints_y <- sqrt(r_squared) * sin(angle)
+
+spoints <- data.frame(spoints_x,spoints_y)
+
+
+W <- disc(radius = 10,centre = c(0,0))
+
+plot(W)  
+points(spoints)
+
+```
+
+6
+```{r}
+
+object <- ppp(spoints_x, spoints_y, W)
+
+plot( quadrat.test(object) )
+#data:  object
+#X2 = 107.17, df = 24, p-value = 3.507e-12
+#alternative hypothesis: two.sided
+
+#Wartosc p-value jest bardzo mala wiec nie pozwala ona na odrzucenie hipotezy zerowej o calkowicie losowym rozkladzie puktow
+
+
+```
+
+7
+```{r}
+R <- 10
+n <- 500
+lam <- n / ( PI * R * R )
+W <- disc(radius = 10,centre = c(0,0))
+
+rpoispp(lambda = lam, win = W ) # 498
+
+```
+
+

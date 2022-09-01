@@ -1,0 +1,101 @@
+---
+title: "cw1"
+output: html_document
+---
+
+```{r}
+#1
+vec1 <- c(1:20)
+vec2 <- c(20:1)
+
+vec3 <-vec1+vec2
+
+```
+
+```{r}
+#2
+vec4 <- seq(from =0, to = 100, by = 11)
+
+
+```
+
+```{r}
+my_rivers <- rivers;
+
+suma <- sum(my_rivers)
+srednia <- mean(my_rivers)
+mediana <- median(my_rivers)
+wariancja <- var(my_rivers)
+odch_std <- sd(my_rivers)
+minim <- min(my_rivers)
+maksi <- max(my_rivers)
+
+dane_vec <- c(suma,srednia,mediana,wariancja,odch_std,minim,maksi)
+
+
+```
+
+
+```{r}
+#4
+hist(my_rivers,breaks = 20)
+
+```
+
+```{r}
+#5
+grawitacja <- read.table(file = "gravity.txt", col.names = c("X" ,"grav_modeled", "grav_measured"))
+
+library(ggplot2)
+
+wykres <- ggplot(grawitacja) + geom_jitter(aes(x = X,y = grav_measured),size=2, shape=23,color = "blue") + geom_point(aes(x = X,y = grav_modeled),size = 2,color = "red") +labs(x="X[m]",y="gravity[mGal]")
+wykres
+
+
+```
+```{r}
+
+x_power_y <- function(x,y){
+  result <- 1
+  for(i in 1:y){
+    result <- result * x
+  }
+  return(result)
+}
+x_power_y(2,2)
+
+
+
+```
+
+```{r}
+
+data <- data.frame(imie=c("Kasia","Ewa","Jan","Piotr"),plec =c("K","K","M","M"),kierunek=c("GF","GIN","INF","GF"),rok = c(3,1,2,4))
+
+
+
+```
+
+```{r}
+library(ggplot2)
+
+diamenty <- diamonds
+nrow(diamenty)
+ncol(diamenty)
+colnames(diamenty)
+
+
+
+```
+
+```{r}
+
+library(dplyr)
+
+filter <- filter(diamenty,carat > 0.8)
+
+sort <- arrange(diamenty,desc(carat))
+
+```
+
+

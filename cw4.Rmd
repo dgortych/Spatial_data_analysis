@@ -1,0 +1,74 @@
+---
+title: "CW4"
+output: html_document
+---
+
+Zad1
+```{r}
+
+library(MASS)
+dane <- cats
+
+plot(dane$Bwt, dane$Hwt, main="Scatterplot",
+   xlab="Body Weight[kg]", ylab="Heart Weight[g]", pch=19)
+
+```
+
+Zad2
+```{r}
+covXY = 0
+for( i in 1:length(dane$Bwt) ){
+  covXY = covXY + ( dane$Bwt[i] - mean(dane$Bwt) ) * ( dane$Hwt[i] - mean(dane$Hwt) ) 
+  
+}
+
+covXY = covXY / ( length(dane$Bwt) - 1 )
+covXY  #0.9501127
+
+```
+
+Zad3
+```{r}
+
+cov(dane$Bwt, dane$Hwt) #0.9501127
+
+
+cor(dane$Bwt, dane$Hwt) #0.8041274
+
+```
+Zad4
+
+Wartosc wspolczynika korelacji jest dodatnia co oznacza że wraz ze wzrostem wagi ciala kotów, rosnie tez waga ich serc
+Wartosc ta jest wieksza od 0.8 co wskazuje na to że jest to korelacja dosc silna
+
+
+Zad5
+```{r}
+cor.test(dane$Bwt, dane$Hwt,method = "pearson")  #0.7375682 0.8552122
+
+
+```
+
+Zad6
+```{r}
+
+cats.mod <- lm(dane$Bwt ~ dane$Hwt)
+cats.mod
+
+```
+Zad7
+
+```{r}
+library(dplyr)
+library(ggpubr)
+ggscatter(data = dane,x = "Bwt", y = "Hwt",cor.method = "pearson",add = "reg.line",conf.int = TRUE,cor.coef = TRUE) 
+
+```
+
+
+
+
+
+
+
+

@@ -1,0 +1,85 @@
+---
+title: "cw6"
+output: html_document
+---
+
+
+Zad 1,2,3
+```{r}
+
+library(spatstat)
+data <- murchison
+plot(data$gold$x, data$gold$y, type = "p", col = "red") 
+plot(data$faults, type = "l" ,add = TRUE, col = "blue") 
+plot(data$greenstone, add = TRUE) 
+
+class(data)
+
+sum <- summary(data$gold)
+sum$intensity
+```
+
+Zad4,5
+```{r}
+
+plot(data$gold$x, data$gold$y, type = "p", col = "red") 
+
+count<-quadratcount(data$gold, 5,5)
+
+plot(count, add=TRUE)
+
+```
+
+Zad 6
+```{r}
+
+test <- quadrat.test(data$gold)
+plot ( test )
+test$p.value
+ 
+
+#Wartosc p-value jest marginalna co oznacza ze mozemy odrzucic hipotezy zerowa mowiaca o losowym rozkladzie punktow
+
+```
+
+
+Zad7,8
+```{r}
+
+den <- density(data$gold)
+plot(den)
+
+summary(den)
+contour(den)
+persp(den)
+
+
+```
+
+
+Zad9
+```{r}
+
+plot(data$gold$x, data$gold$y, type = "p", col = "red") 
+plot(data$faults, type = "l", add = TRUE, col = "blue") 
+
+```
+
+Zad10,11,12,13
+```{r}
+
+covariate <- distmap(data$faults)
+plot(covariate)
+
+
+plot(rhohat(data$gold,covariate))
+
+
+distances <- distfun(data$faults)
+
+
+distances(400000,7000000) #18913.02
+```
+
+
+

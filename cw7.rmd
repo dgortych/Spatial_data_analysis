@@ -1,0 +1,127 @@
+---
+title: "cw7"
+output: html_document
+---
+
+1)
+
+
+```{r}
+library(spatstat)
+library(stats)
+
+#a 
+
+W = disc(20)
+p_poisson <- rStrauss(0.18,1,0.3,W=W) 
+#beta = 0.18
+#gamma = 1
+#R = 0.3
+
+plot(W)  
+points(p_poisson)
+
+```
+
+Proces Straussa jest procesem punktowym o gęstości nieznormalizowanej w stosunku do procesu punktowego Poissona, w którym każda para punktów w określonej odległości r od siebie wnosi do gęstości współczynnik lambda.
+
+rStrauss(beta, gamma = 1, R = 0, W = owin(), expand=TRUE, nsim=1, drop=TRUE)) - funkcja przyjmuje argumenty:
+
+*beta - parametr intensywnosci
+*gamma - parametr interakcji
+*R - promien interkacji
+*W - okno
+
+
+
+```{r}
+#b
+
+p_regular <- rStrauss(0.18,0.2,0.3,W = W)
+#beta = 0.18
+#gamma = 0.2
+#R = 0.3
+plot(W)  
+points(p_regular)
+
+```
+
+
+Proces Thomasa polega na wygenerowaniu procesu Poissona i utworzeniu punktów 
+rodzicielskich, a nastepnie dla kazdego z tych punktow tworzony jest kolejny 
+proces Poissona
+
+rThomas(kappa, scale, mu,...)
+kappa - intensywnosc procesu poissona
+scale - odchylenie standardowe rozmieszczenia punktow od srodkow ich klastrow
+mu - srednia ilosc punktow przypadajacych na klaster
+
+
+```{r}
+
+#c
+ 
+p_cluster <- rThomas(0.18,0.2,1,W)
+#kappa = 0.18
+#scale = 0.2
+#mu = 1
+
+plot(W)  
+points(p_cluster)
+
+```
+
+2
+```{r}
+hist(nndist(p_poisson))
+hist(nndist(p_regular))
+hist(nndist(p_cluster))
+
+
+```
+
+3,4
+```{r}
+
+plot(Gest(p_poisson))
+plot(Gest(p_regular))
+plot(Gest(p_cluster))
+
+
+```
+Funkcja Gest() reaizuje Pearson's chi-squared test. Ma on na celu ocene prawdopodobieństwa, że każda zaobserwowana różnica między zestawami powstała przypadkowo.
+
+W naszym przypadku linie na wykresie pokazuja jak bardzo wykres przypomina wykres
+Poisona ( niebieska linia ). Mozemy zauwazyc, że najbardziej znaczace roznice 
+sa w przypadku wykresu z klastrami. Tam dystrybuanta empiryczna lezy znaczoco powyzej dystrybuanty teoretycznej
+
+
+
+
+
+5
+```{r}
+
+plot(Kest(p_poisson,correction='border'))
+plot(Kest(p_regular,correction='border'))
+plot(Kest(p_cluster,correction='border'))
+
+
+```
+6
+```{r}
+
+plot(distmap(p_poisson))
+plot(distmap(p_regular))
+plot(distmap(p_cluster))
+
+```
+
+
+
+
+
+
+
+
+
