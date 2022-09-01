@@ -1,0 +1,10 @@
+Projekt składa się z nestępujących elementów:
+
+-plik Prezentacja.pdf z prezentacją przygotowaną w środowisku LaTeX Beamer
+
+-plik k_srednich.r z kodem do utworzenia map grupowań trójkątów
+
+-plik przerobienie.r z kodem do przerobienia pliku .nc pobranego z GEBCO 
+
+-plik test_orientacji z kodem do utworzenia map testu orientacji
+
